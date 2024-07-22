@@ -7,7 +7,7 @@ class WeatherModel {
   final int humidity;
   final String condition;
   final List timeList;
-  final List? tempList;
+  final List tempList;
 
   WeatherModel( 
       {required this.country,
@@ -16,14 +16,14 @@ class WeatherModel {
       required this.temp,
       required this.humidity,
       required this.condition,
-       this.tempList,
+       required this.tempList,
       });
 
   factory WeatherModel.fromJson(json) {
     List timesList = [];
     for (Map time in json['forecast']['forecastday'][0]['hour']) {   
        String formatTime=DateFormat('hh:mm').format(DateTime.parse(time['time']));
-      timesList.add(formatTime.toString());
+      timesList.add(formatTime);
     }
     List tempList = [];
     for (Map temp in json['forecast']['forecastday'][0]['hour']) {   
@@ -36,7 +36,7 @@ class WeatherModel {
       humidity: json['current']['humidity'],
       condition: json['current']['condition']['text'],
       timeList: timesList, 
-      tempList: tempList??[],
+      tempList: tempList,
     );
   }
 }

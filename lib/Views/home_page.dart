@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (context, index) {
                             return CustomWeatherCard(
                               time: snapshot.data!.timeList[index],
-                              temp: snapshot.data!.tempList![index],
+                              temp: snapshot.data!.tempList[index],
                             );
                           },
                         ),
