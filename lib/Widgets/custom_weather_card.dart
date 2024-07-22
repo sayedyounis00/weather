@@ -1,13 +1,16 @@
-
 import 'package:flutter/material.dart';
 import 'package:weather/Widgets/custom_text.dart';
 
 class CustomWeatherCard extends StatelessWidget {
   const CustomWeatherCard({
-   super.key,   required this.time, required this.temp,
+    super.key,
+    required this.time,
+    required this.temp,
+    required this.imageCondition,
   });
 
   final String time;
+  final String imageCondition;
   final double temp;
   @override
   Widget build(BuildContext context) {
@@ -24,20 +27,30 @@ class CustomWeatherCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-            CustomText(
+          CustomText(
             text: time,
             fontSize: 20,
           ),
           Image.asset(
-            'assets/cloudy.png',
+            changeWeather(),
             cacheHeight: 70,
           ),
-           CustomText(
+          CustomText(
             text: '${temp.round()}°',
             fontSize: 20,
           ),
         ],
       ),
     );
+  }
+
+  String changeWeather() {
+    if (temp.round() >= 18 && temp.round() <= 20) {
+      return 'assets/clouds.png';
+    } else if (temp.round() >= 35) {
+      return 'assets/sun.png';
+    } else {
+      return imageCondition;
+    }
   }
 }
