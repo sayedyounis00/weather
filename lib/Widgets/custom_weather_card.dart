@@ -1,12 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:weather/Widgets/custom_text.dart';
 
 class CustomWeatherCard extends StatelessWidget {
   const CustomWeatherCard({
-   super.key,   required this.time,
+   super.key,   required this.time, required this.temp,
   });
-  final String time;
 
+  final String time;
+  final double temp;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +17,8 @@ class CustomWeatherCard extends StatelessWidget {
       height: 190,
       width: 130,
       decoration: BoxDecoration(
-        color: Colors.white,
+        border: Border.all(),
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -29,8 +32,8 @@ class CustomWeatherCard extends StatelessWidget {
             'assets/cloudy.png',
             cacheHeight: 70,
           ),
-          const CustomText(
-            text: '28°',
+           CustomText(
+            text: '${temp.round()}°',
             fontSize: 20,
           ),
         ],
