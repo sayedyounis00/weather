@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     weatherServices = WeatherServices();
+    future = weatherServices.getWeather(city: city);
   }
 
   void _updateWeather() {
@@ -69,6 +70,9 @@ class _HomePageState extends State<HomePage> {
                         child: const Text('Search'),
                         onPressed: () {
                           _updateWeather();
+                          setState(() {
+                            
+                          });
                           Navigator.of(context).pop();
                         },
                       ),
